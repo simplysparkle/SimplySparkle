@@ -6,10 +6,11 @@ import About from './pages/About';
 import Appointment from './pages/Appointment';
 import Footer from './components/Footer/Footer';
 import BubbleComponent from './components/BubbleComponent/BubbleComponent';
+import AppointmentDetails from './components/AppointmentDetails';
 
 function AppLayout() {
   const location = useLocation(); // Correct usage inside Router context
-  const isAppointmentPage = location.pathname === '/appointment'; // Determine if we're on the appointment page
+  const isAppointmentPage = location.pathname === '/appointment' || location.pathname === '/appointment-details'; // Determine if we're on the appointment page
 
   return (
     <>
@@ -18,6 +19,8 @@ function AppLayout() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/appointment" element={<Appointment />} />
+        <Route path="/appointment-details" element={<AppointmentDetails />} />
+        
       </Routes>
       <Footer position={isAppointmentPage ? 'fixed' : 'relative'} />
       <BubbleComponent />

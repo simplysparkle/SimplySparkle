@@ -15,7 +15,9 @@ import {
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
+import { format } from 'date-fns'; // Importing date-fns to format date and time
 import backgroundImage from '../assets/appointment-img.jpg';
+import AppointmentDetails from '../components/AppointmentDetails';
 
 // Mock services data
 const services = ['Haircut', 'Manicure', 'Pedicure', 'Facial', 'Hair Coloring', 'Massage', 'Nail Art'];
@@ -62,7 +64,6 @@ const Appointment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');  // Clear previous error messages
-    console.log('Form submit initiated');  // Debugging log
 
     // Ensure at least one service is selected
     if (formData.service.length === 0) {
@@ -70,22 +71,28 @@ const Appointment = () => {
       return;
     }
 
-    // Data to send to the backend
+    // Format the date and time using date-fns
+    const formattedDate = format(new Date(formData.date), 'yyyy-MM-dd'); // Format date to 'YYYY-MM-DD'
+    const formattedTime = format(new Date(`1970-01-01T${formData.time}:00`), 'HH:mm'); // Format time to 'HH:mm'
+
+    // Data to send to the backend (ensure `date` is a string)
     const dataToSend = {
       firstName: formData.firstName,
       lastName: formData.lastName,
       mobileNumber: formData.mobileNumber,
       email: formData.email,
-      date: formData.date,
-      time: formData.time,
+      date: formattedDate, // Send formatted date
+      time: formattedTime, // Send formatted time
       services: formData.service,
     };
+
+    console.log('Data to send:', dataToSend); // Check that the data is formatted correctly
 
     try {
       // API call to save the appointment
       const response = await axios.post(
         `${API_BASE_URL}/save-appointment`,
-        dataToSend,
+        dataToSend, // No need to stringify the payload manually, axios does it
         {
           headers: {
             'Content-Type': 'application/json',
@@ -314,7 +321,6 @@ const Appointment = () => {
           </Button>
         </DialogActions>
       </Dialog>
-
       {/* Animation styles for success icon */}
       <style>
         {`
