@@ -68,10 +68,12 @@ const Sidebar = ({ open, onClose, navLinks }) => {
             >
               <ListItemText
                 primary={link.title}
-                sx={{
-                  fontFamily: 'Poppins', // Set font to Poppins
-                  fontWeight: 500, // Use medium font weight
-                  fontSize: '1rem', // Font size for items
+                primaryTypographyProps={{
+                  sx: {
+                    fontFamily: 'Poppins',
+                    fontWeight: 800, // Bold weight
+                    fontSize: '1rem', // Slightly larger font size
+                  },
                 }}
               />
             </ListItem>

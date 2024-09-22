@@ -63,20 +63,40 @@ const Navbar = () => {
                         <MenuIcon sx={{ fontSize: '2.5rem' }} /> {/* Hamburger icon size */}
                     </IconButton>
 
-                    {/* Center Title */}
-                    <Typography
-                        variant="h3"
+                    {/* Center Title with Subtitle */}
+                    <Box
                         sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: { xs: 'center', md: 'left' },  // Center title in mobile, left-align in desktop
                             flexGrow: { xs: 1, md: 0 },  // Allow title to grow in mobile view
-                            textAlign: { xs: 'center', md: 'left' },  // Center title in mobile, left-align in desktop
-                            fontFamily: "Neonderthaw",  // Use custom font for title
-                            color: '#ffffff',
-                            textShadow: '2px 2px 4px rgba(0,0,0,0.3)',  // Subtle shadow
-                            fontSize: { xs: '1.8rem', md: '2.5rem' },  // Responsive font size
                         }}
                     >
-                        Simply Sparkle
-                    </Typography>
+                        <Typography
+                            variant="h3"
+                            sx={{
+                                fontFamily: "Neonderthaw",  // Use custom font for title
+                                color: '#ffffff',
+                                textShadow: '2px 2px 4px rgba(0,0,0,0.3)',  // Subtle shadow
+                                fontSize: { xs: '1.8rem', md: '2.5rem' },  // Responsive font size
+                            }}
+                        >
+                            Simply Sparkle
+                        </Typography>
+                        <Typography
+                            variant="subtitle1"
+                            sx={{
+                                fontFamily: "Poppins",  // Font for subtitle
+                                color: '#ffffff',
+                                fontSize: { xs: '0.9rem', md: '1rem' },  // Responsive font size for Beauty Salon
+                                textTransform: 'uppercase',  // Capitalized text
+                                letterSpacing: '1px',
+                                mt: '-2px', // Slight negative margin to bring the text closer
+                            }}
+                        >
+                            Beauty Salon & Bridal Makeover
+                        </Typography>
+                    </Box>
 
                     {/* Right-aligned Navigation Links */}
                     <Box

@@ -3,6 +3,7 @@ import { Box, Typography, Container, Grid, Card, CardContent, useTheme } from '@
 import { Spa, Star, EmojiEvents } from '@mui/icons-material';
 import MapPointer from '../components/MapPointer';
 import SocialMediaContainer from '../components/SocialMediaContainer';
+import backgroundImage from '../assets/about.jpg'; // Ensure the path is correct
 
 const About = () => {
   const theme = useTheme();
@@ -15,10 +16,25 @@ const About = () => {
 
   return (
     <Container sx={{ mt: 4, position: 'relative' }}>
+      {/* Background image with semi-transparent overlay */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: -1, // Push it behind the content
+          // backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'brightness(0.5)', // Darken the background for readability
+        }}
+      />
       {/* Section 1: About Us */}
       <Box
         sx={{
-          background: 'linear-gradient(45deg, #6a1b9a 30%, #9c27b0 90%)',
+          background: 'rgba(106, 27, 154, 0.8)', // Semi-transparent purple overlay
           color: 'white',
           py: 6,
           textAlign: 'center',
@@ -27,8 +43,8 @@ const About = () => {
           mb: 6,
         }}
       >
-        <Typography variant="h2" gutterBottom fontWeight="bold">
-          Simple Sparkle
+        <Typography variant="h4" gutterBottom fontWeight="bold">
+          Simply Sparkle Beauty Salon
         </Typography>
         <Typography variant="h6" sx={{ maxWidth: '700px', mx: 'auto', mt: 2, px: 2 }}>
           Experience luxury and rejuvenation at SimpleSparkle. Our team of expert stylists and beauty professionals are dedicated to making you look and feel extraordinary.

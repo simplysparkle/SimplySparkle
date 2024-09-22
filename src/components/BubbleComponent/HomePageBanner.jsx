@@ -14,13 +14,12 @@ const BannerContainer = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   overflow: 'hidden',
-  backgroundColor: '#F3E5F5',
 }));
 
 const HeroBanner = styled(Box)(({ theme }) => ({
   position: 'relative',
-  height: '100vh', // Full viewport height
-  width: '100vw', // Full viewport width
+  height: '100vh', // Explicit height
+  width: '100%', // Full width
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -31,7 +30,7 @@ const HeroBanner = styled(Box)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundImage: `url(${homeBanner})`, // Correct use of the imported image
+    backgroundImage: `url(${homeBanner})`, // Make sure homeBanner is correctly imported
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -39,7 +38,6 @@ const HeroBanner = styled(Box)(({ theme }) => ({
     zIndex: -1, // Ensure the background image stays behind content
   },
 }));
-
 const ContentBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   zIndex: 1,
@@ -49,11 +47,42 @@ const ContentBox = styled(Box)(({ theme }) => ({
   padding: '0 20px',
 }));
 
+// "Elevate Your Beauty" text styling
+const TopText = styled(Typography)(({ theme }) => ({
+  position: 'absolute',
+  top: '20%', // Remains 20% from the top for all views
+  left: '50%',
+  transform: 'translateX(-50%)',
+  zIndex: 1,
+  fontFamily: "'Monoton', cursive",
+  textShadow: '0 0 10px rgba(255,255,255,0.5)',
+  marginBottom: theme.spacing(3),
+  color: 'white',
+}));
+
+// Container for "Experience luxury pampering..." text and button
+const BottomContent = styled(Box)(({ theme }) => ({
+  position: 'absolute', 
+  top: '35%', // Positioned below "Elevate Your Beauty" in desktop view (default)
+  left: '50%',
+  transform: 'translateX(-50%)',
+  textAlign: 'center',
+
+  // Adjust the positioning for mobile view
+  [theme.breakpoints.down('sm')]: {
+    top: 'auto', // Remove top positioning
+    bottom: '10%', // Move to the bottom (10% from bottom) in mobile view
+    transform: 'translateX(-50%)', // Only horizontally centered
+  },
+}));
+
+
+
 const GlowingText = styled(Typography)(({ theme }) => ({
   fontFamily: "'Monoton', cursive",
   textShadow: '0 0 10px rgba(255,255,255,0.5)',
   marginBottom: theme.spacing(3),
-  color: '#4A148C',
+  color: 'white',
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
@@ -96,7 +125,7 @@ const HomePageBanner = () => {
   return (
     <BannerContainer>
       <HeroBanner>
-        <ContentBox>
+        {/* <ContentBox>
           <GlowingText variant="h2" component="h1" gutterBottom>
             Elevate Your Beauty
           </GlowingText>
@@ -108,7 +137,22 @@ const HomePageBanner = () => {
               Book Appointment
             </StyledButton>
           </StyledNavLink>
-        </ContentBox>
+        </ContentBox> */}
+          {/* "Elevate Your Beauty" should always be at the top with a 20% margin */}
+          <TopText variant="h2" component="h1" gutterBottom>
+          Elevate Your Beauty
+        </TopText>
+
+        <BottomContent>
+          <Typography variant="h5" color='white' paragraph sx={{ fontFamily: "'Protest Guerrilla', sans-serif" }}>
+            Experience luxury pampering at our premier beauty salon
+          </Typography>
+          <StyledNavLink to="/appointment" end>
+            <StyledButton variant="contained">
+              Book Appointment
+            </StyledButton>
+          </StyledNavLink>
+        </BottomContent>
       </HeroBanner>
       <Box sx={{ py: 8 }}>
         <Typography variant="h3" align="center" gutterBottom color="#4A148C" sx={{ fontFamily: "Protest Guerrilla" }}>

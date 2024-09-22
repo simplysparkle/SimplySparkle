@@ -17,7 +17,7 @@ const SocialMediaContainer = ({ direction = 'horizontal' }) => {
         alignItems: 'center',
       }}
     >
-      <IconButton
+      {/* <IconButton
         component="a"
         href="https://facebook.com"
         target="_blank"
@@ -35,7 +35,7 @@ const SocialMediaContainer = ({ direction = 'horizontal' }) => {
         color="primary"
       >
         <TwitterIcon />
-      </IconButton>
+      </IconButton> */}
 
       <IconButton
         component="a"
@@ -47,7 +47,7 @@ const SocialMediaContainer = ({ direction = 'horizontal' }) => {
         <InstagramIcon />
       </IconButton>
 
-      <IconButton
+      {/* <IconButton
         component="a"
         href="https://linkedin.com"
         target="_blank"
@@ -55,7 +55,7 @@ const SocialMediaContainer = ({ direction = 'horizontal' }) => {
         color="primary"
       >
         <LinkedInIcon />
-      </IconButton>
+      </IconButton> */}
 
       <IconButton
         component="a"

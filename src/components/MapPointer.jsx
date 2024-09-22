@@ -16,7 +16,7 @@ const center = {
     lng: 79.1411827
   };
   
-  const googleMapsApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+  const googleMapsApiKey =import.meta.env.REACT_APP_GOOGLE_API_KEY;
   const MapPointer = () => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleMapsApiKey
