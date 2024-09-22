@@ -1,12 +1,30 @@
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Box, Grid, Autocomplete, Dialog, DialogTitle, DialogContent, DialogActions, IconButton } from '@mui/material';
+import {
+  TextField,
+  Button,
+  Typography,
+  Box,
+  Grid,
+  Autocomplete,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton,
+} from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close';
-import backgroundImage from '../assets/appointment-img.jpg'; // Ensure the path is correct
+import axios from 'axios';
+import backgroundImage from '../assets/appointment-img.jpg';
 
+// Mock services data
 const services = ['Haircut', 'Manicure', 'Pedicure', 'Facial', 'Hair Coloring', 'Massage', 'Nail Art'];
 
+// Fetch API URL from environment variables, with fallback for development
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'; 
+
 const Appointment = () => {
+  // State for form data
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -16,9 +34,12 @@ const Appointment = () => {
     time: '',
     service: [],
   });
-  const [openDialog, setOpenDialog] = useState(false); // To show success modal
-  const [serviceError, setServiceError] = useState(false); // Track if the service selection is missing
 
+  const [openDialog, setOpenDialog] = useState(false);  // Success modal dialog
+  const [serviceError, setServiceError] = useState(false); // Validation for service selection
+  const [errorMessage, setErrorMessage] = useState('');  // Error messages
+
+  // Handle changes to form input fields
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -26,30 +47,85 @@ const Appointment = () => {
     });
   };
 
+  // Handle changes in service selection
   const handleServiceChange = (event, newValue) => {
     setFormData({
       ...formData,
       service: newValue,
     });
     if (newValue.length > 0) {
-      setServiceError(false); // Reset error if a service is selected
+      setServiceError(false);  // Reset error if service is selected
     }
   };
 
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage('');  // Clear previous error messages
+    console.log('Form submit initiated');  // Debugging log
 
-    // Custom validation: Check if at least one service is selected
+    // Ensure at least one service is selected
     if (formData.service.length === 0) {
       setServiceError(true);
       return;
     }
 
-    console.log(formData);
-    // Show the success modal
-    setOpenDialog(true);
+    // Data to send to the backend
+    const dataToSend = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      mobileNumber: formData.mobileNumber,
+      email: formData.email,
+      date: formData.date,
+      time: formData.time,
+      services: formData.service,
+    };
+
+    try {
+      // API call to save the appointment
+      const response = await axios.post(
+        `${API_BASE_URL}/save-appointment`,
+        dataToSend,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        // Show success modal on successful response
+        setOpenDialog(true);
+
+        // Reset form after successful submission
+        setFormData({
+          firstName: '',
+          lastName: '',
+          mobileNumber: '',
+          email: '',
+          date: '',
+          time: '',
+          service: [],
+        });
+      } else {
+        // Handle unexpected status codes
+        setErrorMessage('An unexpected error occurred. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error during API call:', error);
+
+      // Handle various types of errors from the API or network
+      if (error.response) {
+        setErrorMessage(error.response.data.error || 'Failed to book the appointment. Please try again.');
+      } else if (error.request) {
+        setErrorMessage('No response from the server. Please try again later.');
+      } else {
+        setErrorMessage('An error occurred. Please try again.');
+      }
+    }
   };
 
+  // Close the success modal
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
@@ -59,7 +135,6 @@ const Appointment = () => {
       sx={{
         minHeight: '100vh',
         backgroundImage: `url(${backgroundImage})`,
-        // filter: 'brightness(0.7)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         display: 'flex',
@@ -76,7 +151,7 @@ const Appointment = () => {
           backgroundColor: 'rgba(255, 255, 255, 0.9)',
           borderRadius: 2,
           boxShadow: 3,
-          marginBottom: 4, // Adding margin at the bottom to avoid button cut-off
+          marginBottom: 4,
         }}
       >
         <Typography variant="h4" gutterBottom align="center" sx={{ color: 'black', fontFamily: 'Poppins' }}>
@@ -92,6 +167,7 @@ const Appointment = () => {
           }}
         >
           <Grid container spacing={2}>
+            {/* Input fields for appointment form */}
             <Grid item xs={12}>
               <TextField
                 required
@@ -160,7 +236,7 @@ const Appointment = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              {/* Multi-select with search for services */}
+              {/* Multi-select for services */}
               <Autocomplete
                 multiple
                 options={services}
@@ -178,17 +254,25 @@ const Appointment = () => {
                 )}
               />
             </Grid>
+            {/* Display error message if present */}
+            {errorMessage && (
+              <Grid item xs={12}>
+                <Typography color="error" variant="body2" align="center">
+                  {errorMessage}
+                </Typography>
+              </Grid>
+            )}
             <Grid item xs={12}>
               <Button
                 type="submit"
                 fullWidth
                 sx={{
                   mt: 2,
-                  height: '56px', // Increased height
-                  background: 'linear-gradient(45deg, #6A1B9A 30%, #9C27B0 90%)', // Violet-Purple Gradient
+                  height: '56px',
+                  background: 'linear-gradient(45deg, #6A1B9A 30%, #9C27B0 90%)',
                   color: 'white',
                   '&:hover': {
-                    background: 'linear-gradient(45deg, #9C27B0 30%, #6A1B9A 90%)', // Hover state
+                    background: 'linear-gradient(45deg, #9C27B0 30%, #6A1B9A 90%)',
                   },
                 }}
               >
@@ -199,7 +283,7 @@ const Appointment = () => {
         </Box>
       </Box>
 
-      {/* Success Modal */}
+      {/* Success modal */}
       <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
         <DialogTitle>
           <IconButton
@@ -216,12 +300,11 @@ const Appointment = () => {
           </IconButton>
         </DialogTitle>
         <DialogContent sx={{ textAlign: 'center', padding: '24px' }}>
-          {/* Success Tick Animation */}
           <CheckCircleOutlineIcon sx={{ fontSize: 80, color: 'green', animation: 'pop-in 0.5s ease' }} />
           <Typography variant="h6" sx={{ mt: 2, fontFamily: 'Poppins', fontWeight: 'bold' }}>
             Appointment booked successfully!
           </Typography>
-          <Typography variant="body1" sx={{ mt: 2,  fontFamily: 'Poppins' }}>
+          <Typography variant="body1" sx={{ mt: 2, fontFamily: 'Poppins' }}>
             Our representative will call you to confirm the appointment. If you don't hear from us within an hour, please feel free to reach out via WhatsApp or phone call.
           </Typography>
         </DialogContent>
@@ -232,7 +315,7 @@ const Appointment = () => {
         </DialogActions>
       </Dialog>
 
-      {/* CSS for Success Animation */}
+      {/* Animation styles for success icon */}
       <style>
         {`
           @keyframes pop-in {
