@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import logo from '../assets/logo1.jpg'
 const theme = createTheme({
     palette: {
         primary: {
@@ -44,7 +44,7 @@ const Navbar = () => {
                     margin: 0,
                     padding: 0,
                     boxSizing: 'border-box',
-                    height: { xs: '60px', md: '80px' }, // Adjust height for mobile and desktop
+                    height: { xs: '80px', md: '80px' }, // Adjust height for mobile and desktop
                     background: 'linear-gradient(135deg, #9C27B0, #673AB7)',
                 }}
             >
@@ -63,27 +63,30 @@ const Navbar = () => {
                         <MenuIcon sx={{ fontSize: '2.5rem' }} /> {/* Hamburger icon size */}
                     </IconButton>
 
-                    {/* Center Title with Subtitle */}
+                    {/* Center Logo with Subtitle */}
                     <Box
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
-                            alignItems: { xs: 'center', md: 'left' },  // Center title in mobile, left-align in desktop
-                            flexGrow: { xs: 1, md: 0 },  // Allow title to grow in mobile view
+                            alignItems: { xs: 'center', md: 'left' },  // Center logo in mobile, left-align in desktop
+                            flexGrow: { xs: 1, md: 0 },  // Allow logo to grow in mobile view
                         }}
                     >
-                        <Typography
-                            variant="h3"
-                            sx={{
-                                fontFamily: "Neonderthaw",  // Use custom font for title
-                                color: '#ffffff',
-                                textShadow: '2px 2px 4px rgba(0,0,0,0.3)',  // Subtle shadow
-                                fontSize: { xs: '1.8rem', md: '2.5rem' },  // Responsive font size
+                        {/* Placeholder for logo image */}
+                        <img
+                            src={logo} // Replace with your logo path
+                            alt="Simply Sparkle Logo"
+                            style={{
+                                width: 'auto',
+                                marginTop: '5px',
+                                height: '70px', // Adjust height as needed
+                                objectFit: 'contain',
+                                mixBlendMode: 'lighten'
                             }}
-                        >
-                            Simply Sparkle
-                        </Typography>
-                        <Typography
+                        />
+
+                        {/* Subtitle below logo */}
+                        {/* <Typography
                             variant="subtitle1"
                             sx={{
                                 fontFamily: "Poppins",  // Font for subtitle
@@ -95,7 +98,7 @@ const Navbar = () => {
                             }}
                         >
                             Beauty Salon & Bridal Makeover
-                        </Typography>
+                        </Typography> */}
                     </Box>
 
                     {/* Right-aligned Navigation Links */}

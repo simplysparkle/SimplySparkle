@@ -148,8 +148,8 @@ const HomePageBanner = () => {
             Experience luxury pampering at our premier beauty salon
           </Typography>
           <StyledNavLink to="/appointment" end>
-            <StyledButton variant="contained">
-              Book Appointment
+            <StyledButton variant="contained" sx={{fontFamily : 'Poppins'}}>
+              Book Now
             </StyledButton>
           </StyledNavLink>
         </BottomContent>
