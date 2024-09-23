@@ -4,6 +4,7 @@ import { styled } from '@mui/system';
 import { NavLink } from 'react-router-dom';
 import potskin from '../../assets/potrait-skin.jpg';
 import makeup from '../../assets/make-up.jpg';
+import hair from '../../assets/hair.jpg';
 import aloevera from '../../assets/aloe-vera.jpg';
 import homeBanner from '../../assets/Home-banner.jpg'; // Make sure this path is correct
 
@@ -165,7 +166,7 @@ const HomePageBanner = () => {
           {[
             { title: "Skincare Essentials", image: potskin, description: "Nourish your skin with our range of gentle yet effective skincare products." },
             { title: "Makeup Magic", image: makeup, description: "Express yourself with our vibrant and long-lasting makeup collection." },
-            { title: "Natural Ingredients", image: aloevera, description: "We use only the finest natural ingredients to ensure the best results for your skin." },
+            { title: "Haircare Essentials", image: hair, description: "Revitalize your hair with our expert treatments for healthy, shiny, and nourished locks." },
           ].map((feature, index) => (
             <Grid item xs={12} md={4} key={index}>
               <FeatureCard>

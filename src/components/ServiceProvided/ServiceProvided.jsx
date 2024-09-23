@@ -4,16 +4,22 @@ import { Card, CardContent, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 
 const services = [
-  { name: 'Eyebrow Threading', image: 'https://via.placeholder.com/500' },
-  { name: 'Skin Care', image: 'https://via.placeholder.com/500' },
-  { name: 'Bridal Services', image: 'https://via.placeholder.com/500' },
-  { name: 'Pedicure', image: 'https://via.placeholder.com/500' },
-  { name: 'Facials', image: 'https://via.placeholder.com/500' },
-  { name: 'Haircut', image: 'https://via.placeholder.com/500' },
-  { name: 'BlowDry', image: 'https://via.placeholder.com/500' },
-  { name: 'Balayage', image: 'https://via.placeholder.com/500' },
-  { name: 'Body Waxing', image: 'https://via.placeholder.com/500' },
-  { name: 'Massage', image: 'https://via.placeholder.com/500' },
+  { name: 'Skincare (Hydra facial, Spa facials, De-tan, Masks)', image: 'https://via.placeholder.com/500' },
+  { name: 'Skin & Hair Treatment', image: 'https://via.placeholder.com/500' },
+  { name: 'Manicures & Pedicures', image: 'https://via.placeholder.com/500' },
+  { name: 'Waxing, Threading', image: 'https://via.placeholder.com/500' },
+  { name: 'Hair styling & Hair spa', image: 'https://via.placeholder.com/500' },
+  { name: 'Haircuts & Hair color', image: 'https://via.placeholder.com/500' },
+  { name: 'Straightening & smoothening', image: 'https://via.placeholder.com/500' },
+  { name: 'Keratin', image: 'https://via.placeholder.com/500' },
+  { name: 'Pre Bridal & Groom Packages', image: 'https://via.placeholder.com/500' },
+  { name: 'Bridal & Groom Makeover ', image: 'https://via.placeholder.com/500' },
+  { name: 'Saree Box Folding (Pre-pleats)', image: 'https://via.placeholder.com/500' },
+  { name: 'Mehandi', image: 'https://via.placeholder.com/500' },
+  { name: 'Bridal rental jewellary', image: 'https://via.placeholder.com/500' },
+  { name: 'Ear & Nose piercing', image: 'https://via.placeholder.com/500' },
+  { name: 'Tattoos', image: 'https://via.placeholder.com/500' },
+  { name: 'Warts removal', image: 'https://via.placeholder.com/500' },
 ];
 
 // Styled components for the card transformations

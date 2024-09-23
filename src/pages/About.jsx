@@ -3,7 +3,6 @@ import { Box, Typography, Container, Grid, Card, CardContent, useTheme } from '@
 import { Spa, Star, EmojiEvents } from '@mui/icons-material';
 import MapPointer from '../components/MapPointer';
 import SocialMediaContainer from '../components/SocialMediaContainer';
-import backgroundImage from '../assets/about.jpg'; // Ensure the path is correct
 
 const About = () => {
   const theme = useTheme();
