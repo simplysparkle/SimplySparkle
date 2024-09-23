@@ -23,7 +23,7 @@ import AppointmentDetails from '../components/AppointmentDetails';
 const services = ['Haircut', 'Manicure', 'Pedicure', 'Facial', 'Hair Coloring', 'Massage', 'Nail Art'];
 
 // Fetch API URL from environment variables, with fallback for development
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'; 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 const Appointment = () => {
   // State for form data
@@ -141,13 +141,25 @@ const Appointment = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 2,
+        overflow: 'hidden',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'brightness(0.4)', // Reduce the brightness of the image
+          zIndex: -1, // Ensure the background is behind the content
+        },
       }}
     >
       <Box
@@ -155,9 +167,10 @@ const Appointment = () => {
           width: '100%',
           maxWidth: 600,
           padding: '16px',
-          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)', // Form background
           borderRadius: 2,
           boxShadow: 3,
+          zIndex: 1, // Ensure the form is above the background
           marginBottom: 4,
         }}
       >

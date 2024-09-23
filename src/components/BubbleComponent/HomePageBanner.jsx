@@ -35,10 +35,11 @@ const HeroBanner = styled(Box)(({ theme }) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    filter: 'brightness(0.7)', // Optional filter to darken the image
+    filter: 'brightness(0.2)', // Reduce the brightness (0.5 means 50% brightness)
     zIndex: -1, // Ensure the background image stays behind content
   },
 }));
+
 const ContentBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   zIndex: 1,
@@ -51,14 +52,28 @@ const ContentBox = styled(Box)(({ theme }) => ({
 // "Elevate Your Beauty" text styling
 const TopText = styled(Typography)(({ theme }) => ({
   position: 'absolute',
-  top: '20%', // Remains 20% from the top for all views
+  top: '20%', // Default for larger screens
   left: '50%',
   transform: 'translateX(-50%)',
   zIndex: 1,
-  fontFamily: "'Monoton', cursive",
+  fontFamily: "'Poppins', cursive",
   textShadow: '0 0 10px rgba(255,255,255,0.5)',
   marginBottom: theme.spacing(3),
   color: 'white',
+  fontWeight: '700',
+  
+  // Use responsive typography for different screen sizes
+  fontSize: '3.5rem', // Default size for large screens
+
+  [theme.breakpoints.down('md')]: {
+    top: '15%', // Adjust top margin for smaller laptop screens
+    fontSize: '2.5rem', // Adjust font size for smaller laptops
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    top: '10%', // Adjust top margin for mobile devices
+    fontSize: '2.5rem', // Adjust font size for mobile screens
+  },
 }));
 
 // Container for "Experience luxury pampering..." text and button
