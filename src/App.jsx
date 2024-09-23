@@ -19,7 +19,7 @@ function AppLayout() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/appointment" element={<Appointment />} />
-        <Route path="/appointment-details" element={<AppointmentDetails />} />
+        {/* <Route path="/appointment-details" element={<AppointmentDetails />} /> */}
         
       </Routes>
       <Footer position={isAppointmentPage ? 'fixed' : 'relative'} />
