@@ -2,24 +2,42 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Card, CardContent, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
+import skincare  from '../../assets/carosuel/1_skin-care.jpg'
+import hairstyle  from '../../assets/carosuel/5_hair style.jpg'
+import haircolor  from '../../assets/carosuel/haircolor.jpg'
+import manipedi  from '../../assets/carosuel/manicure-pedicure.jpeg'
+import waxing  from '../../assets/carosuel/threading-waxing.jpg'
+import hair  from '../../assets/hair.jpg'
+import hairsalon  from '../../assets/HairSalon.jpg'
+import warts  from '../../assets/carosuel/warts.jpeg'
+import tattos  from '../../assets/carosuel/tattoos.jpg'
+import mehandi  from '../../assets/carosuel/mehandi.jpg'
+import saree  from '../../assets/carosuel/sarefolding1.jpg'
+import bridaljewel  from '../../assets/carosuel/bridal-jewellary.jpg'
+import prewedding  from '../../assets/carosuel/preweddings.jpeg'
+import piecering  from '../../assets/carosuel/piecering.jpg'
+import makeover  from '../../assets/carosuel/bridalmakeover.jpeg'
 
+
+
+ 
 const services = [
-  { name: 'Skincare (Hydra facial, Spa facials, De-tan, Masks)', image: 'https://via.placeholder.com/500' },
-  { name: 'Skin & Hair Treatment', image: 'https://via.placeholder.com/500' },
-  { name: 'Manicures & Pedicures', image: 'https://via.placeholder.com/500' },
-  { name: 'Waxing, Threading', image: 'https://via.placeholder.com/500' },
-  { name: 'Hair styling & Hair spa', image: 'https://via.placeholder.com/500' },
-  { name: 'Haircuts & Hair color', image: 'https://via.placeholder.com/500' },
-  { name: 'Straightening & smoothening', image: 'https://via.placeholder.com/500' },
-  { name: 'Keratin', image: 'https://via.placeholder.com/500' },
-  { name: 'Pre Bridal & Groom Packages', image: 'https://via.placeholder.com/500' },
-  { name: 'Bridal & Groom Makeover ', image: 'https://via.placeholder.com/500' },
-  { name: 'Saree Box Folding (Pre-pleats)', image: 'https://via.placeholder.com/500' },
-  { name: 'Mehandi', image: 'https://via.placeholder.com/500' },
-  { name: 'Bridal rental jewellary', image: 'https://via.placeholder.com/500' },
-  { name: 'Ear & Nose piercing', image: 'https://via.placeholder.com/500' },
-  { name: 'Tattoos', image: 'https://via.placeholder.com/500' },
-  { name: 'Warts removal', image: 'https://via.placeholder.com/500' },
+  { name: 'Skincare (Hydra facial, Spa facials, De-tan, Masks)', image: `${skincare}` },
+  { name: 'Skin & Hair Treatment', image: `${hair}` },
+  { name: 'Manicures & Pedicures', image: `${manipedi}` },
+  { name: 'Waxing, Threading', image: `${waxing}` },
+  { name: 'Hair styling & Hair spa', image: `${haircolor}` },
+  { name: 'Haircuts & Hair color', image: `${hairstyle}` },
+  // { name: 'Straightening & smoothening', image: 'https://via.placeholder.com/500' },
+  // { name: 'Keratin', image: 'https://via.placeholder.com/500' },
+  { name: 'Pre Bridal & Groom Packages', image: `${prewedding}` },
+  { name: 'Bridal & Groom Makeover ', image: `${makeover}` },
+  { name: 'Saree Box Folding (Pre-pleats)', image: `${saree}` },
+  { name: 'Mehandi', image: `${mehandi}` },
+  { name: 'Bridal rental jewellary', image: `${bridaljewel}` },
+  { name: 'Ear & Nose piercing', image:   `${piecering}` },
+  { name: 'Tattoos', image: `${tattos}` },
+  { name: 'Warts removal', image: `${warts}` },
 ];
 
 // Styled components for the card transformations
